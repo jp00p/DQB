@@ -1,11 +1,18 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Enemies/EnemyBase.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/SNES - Dragon Quest JPN - Monsters.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 12, 30, 15, 15 )
 
 [node name="Slime" instance=ExtResource( 1 )]
+texture = SubResource( 1 )
 enemy_name = "Slime"
 strength = 5
 agility = 3
 max_hp = 3
 xp = 1
-gold = 1
+gold_min = 1
+gold_max = 1

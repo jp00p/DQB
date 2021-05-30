@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Enemies/EnemyBase.tscn" type="PackedScene" id=1]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/SNES - Dragon Quest JPN - Monsters.png-89aa5210f62c13984c5c90d3d2a7434c.stex"
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = SubResource( 1 )
+region = Rect2( 28, 29, 17, 17 )
+
+[node name="RedSlime" instance=ExtResource( 1 )]
+texture = SubResource( 2 )
+enemy_name = "Red Slime"
+strength = 7
+agility = 3
+max_hp = 4
+dodge = 1
+xp = 1
+gold_min = 2
+gold_max = 2

@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Fonts/dragon-warrior-iii.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://UI/DQPanel.tres" type="StyleBox" id=2]
 [ext_resource path="res://Sprites/SNES - Dragon Quest JPN - Backgrounds.png" type="Texture" id=3]
-[ext_resource path="res://Enemies/Slime.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Sprites/DragonWarriorOverworldMapBG.png" type="Texture" id=5]
 [ext_resource path="res://Combat.gd" type="Script" id=6]
 [ext_resource path="res://UI/CommandLabel.tscn" type="PackedScene" id=7]
@@ -196,9 +195,3 @@ margin_top = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Slime" parent="Control/EnemyPanel/Center" instance=ExtResource( 4 )]
-margin_left = 48.0
-margin_top = 32.0
-margin_right = 63.0
-margin_bottom = 47.0

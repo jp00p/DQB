@@ -5,7 +5,7 @@
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
-region = Rect2( 12, 30, 15, 15 )
+region = Rect2( 28, 29, 17, 16 )
 
 [node name="EnemyBase" type="TextureRect"]
 texture = SubResource( 1 )

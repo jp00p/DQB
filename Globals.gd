@@ -5,6 +5,7 @@ enum TURN {
 	ENEMY
 }
 
+var PLAYER_NAME = "jp00p"
 var PLAYER_LEVEL = 5
 var PLAYER_MAX_HP = 25
 var PLAYER_MAX_MP = 5
@@ -21,5 +22,8 @@ var PLAYER_AGILITY = 10
 # attack formula: (Attack Strength – (Opponent Defense / 2)) / 2
 
 
-var ENEMY_HP = 5
-var ENEMY_DEFENSE = 5
+
+var ENEMIES = {
+	"Slime" : load("res://Enemies/Slime.tscn"),
+	"RedSlime" : load("res://Enemies/RedSlime.tscn")
+}
