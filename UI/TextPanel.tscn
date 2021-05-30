@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/DQPanel.tres" type="StyleBox" id=1]
+[ext_resource path="res://UI/TextPanel.gd" type="Script" id=2]
+
+[node name="TextPanel" type="Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -96.0
+margin_top = -88.0
+margin_right = 96.0
+margin_bottom = -8.0
+rect_min_size = Vector2( 192, 80 )
+custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Log" type="RichTextLabel" parent="MarginContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 184.0
+margin_bottom = 72.0
+meta_underlined = false
+scroll_active = false
+scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TypingTimer" type="Timer" parent="."]
+wait_time = 0.05

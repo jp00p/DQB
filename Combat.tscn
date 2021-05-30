@@ -1,0 +1,204 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Fonts/dragon-warrior-iii.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/DQPanel.tres" type="StyleBox" id=2]
+[ext_resource path="res://Sprites/SNES - Dragon Quest JPN - Backgrounds.png" type="Texture" id=3]
+[ext_resource path="res://Enemies/Slime.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sprites/DragonWarriorOverworldMapBG.png" type="Texture" id=5]
+[ext_resource path="res://Combat.gd" type="Script" id=6]
+[ext_resource path="res://UI/CommandLabel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://UI/StatsPanel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://UI/TextPanel.tscn" type="PackedScene" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 5 )
+region = Rect2( 416, 576, 248, 240 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 1, 1, 128, 112 )
+margin = Rect2( 1, 1, 1, 1 )
+
+[node name="Combat" type="CanvasLayer"]
+script = ExtResource( 6 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainBG" type="TextureRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatsPanel" parent="Control" instance=ExtResource( 8 )]
+
+[node name="TextPanel" parent="Control" instance=ExtResource( 9 )]
+anchor_left = 0.156
+anchor_top = 0.964
+anchor_right = 0.906
+anchor_bottom = 0.964
+margin_left = 0.0639992
+margin_top = -79.936
+margin_right = 0.0639954
+margin_bottom = 0.0639954
+
+[node name="CommandsPanel" type="Panel" parent="Control"]
+margin_left = 104.0
+margin_top = 7.0
+margin_right = 232.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 128, 48 )
+custom_styles/panel = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CommandsPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="HBoxContainer" parent="Control/CommandsPanel/VBoxContainer"]
+margin_right = 128.0
+margin_bottom = 8.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control/CommandsPanel/VBoxContainer/Title"]
+margin_left = 36.0
+margin_right = 92.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 32, 8 )
+size_flags_horizontal = 4
+custom_styles/normal = SubResource( 4 )
+text = "COMMAND"
+align = 1
+max_lines_visible = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/CommandsPanel/VBoxContainer"]
+margin_top = 12.0
+margin_right = 128.0
+margin_bottom = 36.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 0
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 0
+
+[node name="Commands" type="GridContainer" parent="Control/CommandsPanel/VBoxContainer/MarginContainer"]
+margin_left = 8.0
+margin_right = 120.0
+margin_bottom = 24.0
+custom_constants/vseparation = 8
+custom_constants/hseparation = 0
+columns = 2
+
+[node name="Fight" parent="Control/CommandsPanel/VBoxContainer/MarginContainer/Commands" instance=ExtResource( 7 )]
+margin_bottom = 8.0
+focus_neighbour_left = NodePath("../Spell")
+focus_neighbour_top = NodePath("../Run")
+focus_neighbour_right = NodePath("../Spell")
+focus_neighbour_bottom = NodePath("../Run")
+text = " FIGHT"
+
+[node name="Spell" parent="Control/CommandsPanel/VBoxContainer/MarginContainer/Commands" instance=ExtResource( 7 )]
+margin_left = 56.0
+margin_right = 112.0
+margin_bottom = 8.0
+focus_neighbour_left = NodePath("../Fight")
+focus_neighbour_top = NodePath("../Item")
+focus_neighbour_right = NodePath("../Fight")
+focus_neighbour_bottom = NodePath("../Item")
+text = " SPELL"
+align = 2
+command = "spell"
+
+[node name="Run" parent="Control/CommandsPanel/VBoxContainer/MarginContainer/Commands" instance=ExtResource( 7 )]
+margin_top = 16.0
+margin_bottom = 24.0
+focus_neighbour_left = NodePath("../Item")
+focus_neighbour_top = NodePath("../Fight")
+focus_neighbour_right = NodePath("../Item")
+focus_neighbour_bottom = NodePath("../Fight")
+text = " RUN"
+command = "run"
+
+[node name="Item" parent="Control/CommandsPanel/VBoxContainer/MarginContainer/Commands" instance=ExtResource( 7 )]
+margin_left = 56.0
+margin_top = 16.0
+margin_right = 112.0
+margin_bottom = 24.0
+focus_neighbour_left = NodePath("../Run")
+focus_neighbour_top = NodePath("../Spell")
+focus_neighbour_right = NodePath("../Run")
+focus_neighbour_bottom = NodePath("../Spell")
+text = " ITEM"
+align = 2
+command = "item"
+
+[node name="EnemyPanel" type="Panel" parent="Control"]
+margin_left = 80.0
+margin_top = 55.0
+margin_right = 192.0
+margin_bottom = 136.0
+custom_styles/panel = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="TextureRect" parent="Control/EnemyPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1.0
+margin_right = -1.0
+margin_bottom = -1.0
+texture = SubResource( 6 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Center" type="CenterContainer" parent="Control/EnemyPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slime" parent="Control/EnemyPanel/Center" instance=ExtResource( 4 )]
+margin_left = 48.0
+margin_top = 32.0
+margin_right = 63.0
+margin_bottom = 47.0

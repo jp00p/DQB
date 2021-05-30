@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UI/CommandLabel.gd" type="Script" id=1]
+
+[node name="Fight" type="Label"]
+margin_right = 56.0
+margin_bottom = 9.0
+rect_min_size = Vector2( 56, 0 )
+focus_mode = 2
+text = "FIGHT"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+
+[connection signal="focus_entered" from="." to="." method="_on_Fight_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_Fight_focus_exited"]
+[connection signal="gui_input" from="." to="." method="_on_Fight_gui_input"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
