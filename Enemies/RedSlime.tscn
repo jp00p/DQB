@@ -11,11 +11,4 @@ region = Rect2( 28, 29, 17, 17 )
 
 [node name="RedSlime" instance=ExtResource( 1 )]
 texture = SubResource( 2 )
-enemy_name = "Red Slime"
-strength = 7
-agility = 3
-max_hp = 4
-dodge = 1
-xp = 1
-gold_min = 2
-gold_max = 2
+NAME = "RedSlime"

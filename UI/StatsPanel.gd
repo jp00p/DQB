@@ -8,9 +8,18 @@ onready var gold = $VBoxContainer/MarginContainer/Stats/GridContainer/GAmt
 onready var xp = $VBoxContainer/MarginContainer/Stats/GridContainer/EAmt
 
 func _ready():
-	player_name.text = str(Globals.PLAYER_NAME).substr(0,4)
-	level.text = str(Globals.PLAYER_LEVEL)
-	hp.text = str(Globals.PLAYER_HP)
-	mp.text = str(Globals.PLAYER_MP)
-	gold.text = str(Globals.PLAYER_GOLD)
-	xp.text = str(Globals.PLAYER_EXP)
+	player_name.text = str(PLAYER.NAME).substr(0,4)
+	level.text = str(PLAYER.level)
+	hp.text = str(PLAYER.hp)
+	mp.text = str(PLAYER.mp)
+	gold.text = str(PLAYER.gold)
+	xp.text = str(PLAYER.xp)
+	
+	PLAYER.connect("player_hp_changed", self, "update_player_hp")
+	PLAYER.connect("player_mp_changed", self, "update_player_mp")
+	
+func update_player_hp(val):
+	hp.text = str(val)
+
+func update_player_mp(val):
+	mp.text = str(val)

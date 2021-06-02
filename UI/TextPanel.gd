@@ -27,8 +27,9 @@ func type_message(msg):
 		text_log.text += letter # add letter to textbox
 	message_queue.pop_front() # remove message from queue
 	printing = false # we are not printing anymore, ready for another!
-	if message_queue.size() == 0: # tell the rest of the game the queue is empty!
-		emit_signal("text_finished_typing")
+	emit_signal("text_finished_typing")
+	#if message_queue.size() == 0: # tell the rest of the game the queue is empty!
+		
 
 func _process(delta):
 	if message_queue.size() > 0 and not printing:

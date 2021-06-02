@@ -6,7 +6,7 @@ signal cast_spell
 onready var spell_list = $Panel/VBoxContainer/MarginContainer/GridContainer
 
 func _ready():
-	for spell in Globals.KNOWN_SPELLS:
+	for spell in PLAYER.known_spells:
 		# list our spellbook
 		var l = load("res://UI/CommandLabel.tscn").instance()
 		l.text = str(" "+Globals.SPELLS[spell].name).to_upper()
@@ -23,4 +23,5 @@ func _input(event):
 
 func spell_selected(spell_name):
 	# cast that spell! (send signal to combat screen
-	emit_signal("cast_spell", spell_name, "player")
+	emit_signal("cast_spell", spell_name, PLAYER)
+	queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://UI/DQFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://UI/DQPanel.tres" type="StyleBox" id=2]
@@ -32,6 +32,21 @@ atlas = ExtResource( 3 )
 region = Rect2( 1, 1, 128, 112 )
 margin = Rect2( 1, 1, 1, 1 )
 
+[sub_resource type="Animation" id=6]
+resource_name = "flash"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false ]
+}
+
 [node name="Combat" type="CanvasLayer"]
 script = ExtResource( 6 )
 
@@ -43,7 +58,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MainBG" type="TextureRect" parent="Control"]
+[node name="MainBG" type="TextureRect" parent="Control" groups=[
+"shakey",
+]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = SubResource( 2 )
@@ -52,9 +69,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StatsPanel" parent="Control" instance=ExtResource( 8 )]
+[node name="StatsPanel" parent="Control" groups=[
+"shakey",
+] instance=ExtResource( 8 )]
 
-[node name="TextPanel" parent="Control" instance=ExtResource( 9 )]
+[node name="TextPanel" parent="Control" groups=[
+"shakey",
+] instance=ExtResource( 9 )]
 anchor_left = 0.156
 anchor_top = 0.964
 anchor_right = 0.906
@@ -64,7 +85,9 @@ margin_top = -79.936
 margin_right = 0.0639954
 margin_bottom = 0.0639954
 
-[node name="CommandsPanel" type="Panel" parent="Control"]
+[node name="CommandsPanel" type="Panel" parent="Control" groups=[
+"shakey",
+]]
 margin_left = 104.0
 margin_top = 7.0
 margin_right = 232.0
@@ -104,17 +127,18 @@ max_lines_visible = 1
 [node name="MarginContainer" type="MarginContainer" parent="Control/CommandsPanel/VBoxContainer"]
 margin_top = 12.0
 margin_right = 128.0
-margin_bottom = 36.0
+margin_bottom = 39.0
 custom_constants/margin_right = 8
-custom_constants/margin_top = 0
+custom_constants/margin_top = 2
 custom_constants/margin_left = 8
 custom_constants/margin_bottom = 0
 
 [node name="Commands" type="GridContainer" parent="Control/CommandsPanel/VBoxContainer/MarginContainer"]
 margin_left = 8.0
+margin_top = 2.0
 margin_right = 120.0
-margin_bottom = 24.0
-custom_constants/vseparation = 8
+margin_bottom = 27.0
+custom_constants/vseparation = 9
 custom_constants/hseparation = 0
 columns = 2
 
@@ -139,8 +163,8 @@ align = 2
 command = "spell"
 
 [node name="Run" parent="Control/CommandsPanel/VBoxContainer/MarginContainer/Commands" instance=ExtResource( 7 )]
-margin_top = 16.0
-margin_bottom = 24.0
+margin_top = 17.0
+margin_bottom = 25.0
 focus_neighbour_left = NodePath("../Item")
 focus_neighbour_top = NodePath("../Fight")
 focus_neighbour_right = NodePath("../Item")
@@ -150,9 +174,9 @@ command = "run"
 
 [node name="Item" parent="Control/CommandsPanel/VBoxContainer/MarginContainer/Commands" instance=ExtResource( 7 )]
 margin_left = 56.0
-margin_top = 16.0
+margin_top = 17.0
 margin_right = 112.0
-margin_bottom = 24.0
+margin_bottom = 25.0
 focus_neighbour_left = NodePath("../Run")
 focus_neighbour_top = NodePath("../Spell")
 focus_neighbour_right = NodePath("../Run")
@@ -171,7 +195,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BG" type="TextureRect" parent="Control/EnemyPanel"]
+[node name="BG" type="TextureRect" parent="Control/EnemyPanel" groups=[
+"shakey",
+]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 1.0
@@ -191,3 +217,16 @@ margin_top = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FlashEffect" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FlashEffect"]
+playback_speed = 1.5
+anims/flash = SubResource( 6 )

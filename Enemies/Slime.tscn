@@ -9,10 +9,5 @@ region = Rect2( 12, 30, 15, 15 )
 
 [node name="Slime" instance=ExtResource( 1 )]
 texture = SubResource( 1 )
-enemy_name = "Slime"
-strength = 5
-agility = 3
-max_hp = 3
-xp = 1
-gold_min = 1
-gold_max = 1
+NAME = "Slime"
+move_list = [ "small_heal", "attack" ]
